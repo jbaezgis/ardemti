@@ -17,7 +17,7 @@ use App\Http\Livewire\Account;
 |
 */
 
-Route::get('/', Home::class);
+// Route::get('/', Home::class);
 Route::get('accepted-offers', AcceptedOffers::class);
 Route::get('won-offers', WonOffers::class);
 Route::get('account', Account::class);
@@ -27,6 +27,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    Route::get('/', Home::class);
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');

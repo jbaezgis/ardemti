@@ -1,1 +1,1 @@
-<img class="h-6" src="{{ asset('images/logo-white.png') }}" alt="Luefty Logo">
+<img class="h-12" src="{{ asset('images/logo.svg') }}" alt="Luefty Logo">
