@@ -1,10 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Home;
-use App\Http\Livewire\AcceptedOffers;
-use App\Http\Livewire\WonOffers;
-use App\Http\Livewire\Account;
+use App\Http\Livewire\Usuarios;
+use App\Http\Livewire\Productos;
+use App\Http\Livewire\Roles;
+use App\Http\Livewire\Ventas\Ventas;
+use App\Http\Livewire\Ventas\NuevaVenta;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,19 +20,11 @@ use App\Http\Livewire\Account;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::get('/', Home::class)->name('home');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
-// Route::get('/', Home::class);
-Route::get('accepted-offers', AcceptedOffers::class);
-Route::get('won-offers', WonOffers::class);
-Route::get('account', Account::class);
+    // Administration
+    Route::get('/usuarios', Usuarios::class)->name('usuarios');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/', Home::class);
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 });

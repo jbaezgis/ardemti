@@ -62,5 +62,15 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.municipios.edit'])->syncRoles([$role1]);
         Permission::create(['name' => 'admin.municipios.destroy'])->syncRoles([$role1]);
 
+        Permission::create(['name' => 'admin.users.index'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.users.create'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.users.edit'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.users.destroy'])->syncRoles([$role1]);
+
+        Permission::create(['name' => 'admin.roles.index'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.roles.create'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.roles.edit'])->syncRoles([$role1]);
+        Permission::create(['name' => 'admin.roles.destroy'])->syncRoles([$role1]);
+
     }
 }

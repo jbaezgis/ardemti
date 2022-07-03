@@ -16,9 +16,9 @@ class CreateProvinciasTable extends Migration
         Schema::create('provincias', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->nullable();
-            $table->decimal('long', 10, 7);
-            $table->decimal('lat', 10, 7);
-            $table->integer('creado_por');
+            $table->decimal('long', 10, 7)->nullable();
+            $table->decimal('lat', 10, 7)->nullable();
+            $table->integer('creado_por')->nullable();
             $table->timestamps();
         });
     }

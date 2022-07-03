@@ -17,9 +17,9 @@ class CreateMunicipiosTable extends Migration
             $table->id();
             $table->integer('provincia_id')->nullable();
             $table->string('nombre')->nullable();
-            $table->decimal('long', 10, 7);
-            $table->decimal('lat', 10, 7);
-            $table->integer('creado_por');
+            $table->decimal('long', 10, 7)->nullable();
+            $table->decimal('lat', 10, 7)->nullable();
+            $table->integer('creado_por')->nullable();
             $table->timestamps();
         });
     }
