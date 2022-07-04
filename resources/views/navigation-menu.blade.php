@@ -94,7 +94,9 @@
                         </x-jet-dropdown>
                     </div>
                 @endif
-
+                
+                @role('Administrador')
+                   
                 <div class="">
                     <x-jet-dropdown align="right" width="60">
                         <x-slot name="trigger">
@@ -135,7 +137,7 @@
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Security') }}
                                 </div>
-                                <x-jet-dropdown-link href="{{ route('usuarios') }}" class="{{ request()->routeIs('usuarios') ? 'text-gray-700 bg-gray-200' : '' }}">
+                                <x-jet-dropdown-link href="{{ route('users.all') }}" class="{{ request()->routeIs('users.*') ? 'text-gray-700 bg-gray-200' : '' }}">
                                     {{ __('Usuarios') }}
                                 </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="">
@@ -152,6 +154,7 @@
                         </x-slot>
                     </x-jet-dropdown>
                 </div>
+                @endrole
                 <!-- Settings Dropdown -->
 
                 <div class="ml-3 relative">

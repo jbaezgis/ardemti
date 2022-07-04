@@ -14,7 +14,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::latest()->paginate();
+
+        return view('productos.index', compact('productos'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('productos.create');
     }
 
     /**
@@ -44,7 +46,7 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
         //
     }
@@ -55,9 +57,11 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit(Request $request, Producto $producto)
     {
-        //
+        $request->flash();
+
+        return view('productos.edit', compact('producto'));
     }
 
     /**
@@ -69,7 +73,11 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        // $producto = Producto::findOrFail($id);
+        
+        $producto->save();
+
+        return redirect('productos/index');
     }
 
     /**
@@ -78,7 +86,7 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
         //
     }

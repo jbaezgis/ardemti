@@ -8,6 +8,7 @@ use App\Http\Livewire\Productos;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Ventas\Ventas;
 use App\Http\Livewire\Ventas\NuevaVenta;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -25,6 +26,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     // Administration
-    Route::get('/usuarios', Usuarios::class)->name('usuarios');
+    Route::get('/users/all', Usuarios::class)->name('users.all');
+    Route::resource('users', UserController::class)->names('users');
 
 });
