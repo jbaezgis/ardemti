@@ -9,6 +9,8 @@ use App\Http\Livewire\Roles;
 use App\Http\Livewire\Ventas\Ventas;
 use App\Http\Livewire\Ventas\NuevaVenta;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\UserTable;
+use App\Http\Livewire\ProductoTable;
 
 
 /*
@@ -27,6 +29,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
 
     // Administration
     Route::get('/users/all', Usuarios::class)->name('users.all');
+    Route::get('/productos', Productos::class)->name('productos');
+    Route::get('/productos', Productos::class)->name('productos');
     Route::resource('users', UserController::class)->names('users');
+    // Route::get('/users/table', UserTable::class)->name('users.table');
 
 });

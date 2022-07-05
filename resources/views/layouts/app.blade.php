@@ -29,6 +29,7 @@
 
         <wireui:scripts />
         @livewireStyles
+        @powerGridStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
@@ -59,5 +60,6 @@
         @stack('modals')
 
         @livewireScripts
+        @powerGridScripts
     </body>
 </html>

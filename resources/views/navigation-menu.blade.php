@@ -117,7 +117,7 @@
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Mantenimientos') }}
                                 </div>
-                                <x-jet-dropdown-link href="">
+                                <x-jet-dropdown-link href="{{ route('productos') }}" class="{{ request()->routeIs('productos') ? 'text-gray-700 bg-gray-200' : '' }}">
                                     {{ __('Productos') }}
                                 </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="">
