@@ -120,7 +120,7 @@
                                 <x-jet-dropdown-link href="{{ route('productos') }}" class="{{ request()->routeIs('productos') ? 'text-gray-700 bg-gray-200' : '' }}">
                                     {{ __('Productos') }}
                                 </x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="">
+                                <x-jet-dropdown-link href="{{ route('categorias') }}" class="{{ request()->routeIs('categorias') ? 'text-gray-700 bg-gray-200' : '' }}">
                                     {{ __('Categorías') }}
                                 </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="">

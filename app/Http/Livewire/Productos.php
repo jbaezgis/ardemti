@@ -22,7 +22,7 @@ class Productos extends Component
 
     public function render()
     {
-        return view('livewire.productos');
+        return view('livewire.productos.index');
     }
 
    
