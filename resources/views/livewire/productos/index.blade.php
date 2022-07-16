@@ -1,59 +1,17 @@
 @section('title', __('Productos'))
 <div>
     <div class="max-w-7xl mx-auto pt-6 px-2">
-        @include('livewire.productos.producto-form')
-        
         <div class="flex justify-between p-2 bg-white rounded-t shadow">
             <div>
-                <x-input wire:model="nombre" right-icon="search" placeholder="ID o Descripción" />
+                <x-input wire:model="search" right-icon="search" placeholder="ID o Descripción" />
             </div>
             <div>
-                
                 <div class="flex gap-2">
-                 
-                    <div>
-                        <a onclick="$openModal('simpleModal')" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-400 active:bg-green-600 focus:outline-none focus:border-green-600 focus:ring focus:ring-green-300 disabled:opacity-25 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                            </svg>
-                            {{ __('Producto') }}
-                        </a>
+                   <div>
+                        <x-jet-button wire:click="createShowModal">
+                            {{ __('Agregar') }}
+                        </x-jet-button>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex gap-8 px-4 py-2 bg-gray-200 rounded-b mb-2 text-gray-600 text-sm">
-            <div>
-                <div>
-                    <strong>Hoy</strong>: 0 Venta
-                </div>
-                <div class="text-lg">
-                    RD$0.00
-                </div>
-            </div>
-            <div>
-                <div>
-                    <strong>Ayer</strong>: 0 Venta
-                </div>
-                <div class="text-lg">
-                    RD$0.00
-                </div>
-            </div>
-            <div>
-                <div>
-                    <strong>Esta semana</strong>: 0 Venta
-                </div>
-                <div class="text-lg">
-                    RD$0.00
-                </div>
-            </div>
-            <div>
-                <div>
-                    <strong>Este mes</strong>: 0 Venta
-                </div>
-                <div class="text-lg">
-                    RD$0.00
                 </div>
             </div>
         </div>
@@ -161,6 +119,82 @@
                 </table>
               </div>
         </div>
+
+        <br />
+    {{ $productos->links() }}
+
+    {{-- Modal Form --}}
+    <x-jet-dialog-modal wire:model="modalFormVisible">
+        <x-slot name="title">
+            {{ __('Save Page') }} {{ $modelId }}
+        </x-slot>
+
+        <x-slot name="content">
+            <div class="mt-4">
+                <x-jet-label for="title" value="{{ __('Title') }}" />
+                <x-jet-input id="title" class="block mt-1 w-full" type="text" name="title"
+                    wire:model.debounce.500ms="title" />
+                @error('title')
+                    <span class="error">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="mt-4">
+                <x-jet-label for="slug" value="{{ __('Slug') }}" />
+                <div class="mt-1 flex rounded-md shadow-sm">
+                    <span
+                        class="inline-flex items-center px-3 rounded-l-md border border-r-0 py-3 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                        http://localhost:8000/
+                    </span>
+                    <input wire:model.lazy="slug"
+                        class="form-input flex-1 block w-full pl-1 rounded-none border rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                        placeholder="url-slug">
+                </div>
+                @error('slug')
+                    <span class="error">{{ $message }}</span>
+                @enderror
+            </div>
+            
+            
+            
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('modalFormVisible')" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-jet-secondary-button>
+
+            @if ($modelId)
+                <x-jet-danger-button class="ml-3" wire:click="update" wire:loading.attr="disabled">
+                    {{ __('Update') }}
+                </x-jet-danger-button>
+            @else
+                <x-jet-danger-button class="ml-3" wire:click="create" wire:loading.attr="disabled">
+                    {{ __('Create') }}
+                </x-jet-danger-button>
+            @endif
+        </x-slot>
+    </x-jet-dialog-modal>
+
+    {{-- Delete Modal --}}
+    <x-jet-dialog-modal wire:model="modalConfirmDelete">
+        <x-slot name="title">
+            {{ __('Delete Page') }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('Are you sure you want to delete this page? Once the page is deleted, all of its resources and data will be permanently deleted.') }}
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('modalConfirmDelete')" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-3" wire:click="delete" wire:loading.attr="disabled">
+                {{ __('Delete Page') }}
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-dialog-modal>
 
     </div>
 

@@ -21,12 +21,7 @@ class Categorias extends Component
     public $nombre;
     public $search;
 
-    public function render()
-    {
-        return view('livewire.categorias.index', [
-            'categorias' => Categoria::where('id', 'LIKE', "%{$this->search}%")->orWhere('nombre', 'LIKE', "%{$this->search}%")->latest()->paginate(10),
-        ]);
-    }
+    
 
     public function mount()
     {
@@ -107,6 +102,13 @@ class Categorias extends Component
             'eventMessage' => 'La categoría "' . $this->modelId . '" fue eliminada!'
         ]);
         $this->reset();
+    }
+
+    public function render()
+    {
+        return view('livewire.categorias.index', [
+            'categorias' => Categoria::where('id', 'LIKE', "%{$this->search}%")->orWhere('nombre', 'LIKE', "%{$this->search}%")->latest()->paginate(10),
+        ]);
     }
 
 }
